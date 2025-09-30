@@ -12,13 +12,21 @@
         <h1 class="text-xl font-semibold">Books</h1>
         <nav class="space-x-4">
             <a href="/" class="hover:underline">Home</a>
-            <a href="/books/new" class="hover:underline">New Book</a>
-            <a href="/books/available" class="hover:underline">Available</a>
+            <a href="/users" class="hover:underline">Users</a>
+            <a href="/books" class="hover:underline">Books</a>
+            <a href="/loans" class="hover:underline">Active Loans</a>
         </nav>
     </div>
 </header>
 <main class="container mx-auto p-6">
     <div class="bg-white shadow rounded p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="space-x-2">
+                <a href="/books/new" class="bg-indigo-600 text-white px-3 py-2 rounded">Add Book</a>
+                <a href="/books" class="bg-gray-200 text-gray-900 px-3 py-2 rounded">All</a>
+                <a href="/books/available" class="bg-gray-200 text-gray-900 px-3 py-2 rounded">Available</a>
+            </div>
+        </div>
         <table class="min-w-full text-left">
             <thead>
             <tr class="border-b">
