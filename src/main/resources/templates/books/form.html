@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${formTitle}">Book Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+<header class="bg-indigo-600 text-white p-4">
+    <div class="container mx-auto flex justify-between">
+        <h1 class="text-xl font-semibold" th:text="${formTitle}">Book</h1>
+        <nav class="space-x-4">
+            <a href="/books" class="hover:underline">Back</a>
+        </nav>
+    </div>
+</header>
+<main class="container mx-auto p-6">
+    <div class="bg-white shadow rounded p-6 max-w-xl">
+        <form th:action="${action}" th:object="${book}" method="post" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium">Title</label>
+                <input class="mt-1 block w-full border rounded p-2" type="text" th:field="*{title}"/>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Author</label>
+                <input class="mt-1 block w-full border rounded p-2" type="text" th:field="*{author}"/>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Publication Year</label>
+                <input class="mt-1 block w-full border rounded p-2" type="number" th:field="*{publicationYear}"/>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('publicationYear')}" th:errors="*{publicationYear}"></p>
+            </div>
+            <div class="pt-2">
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

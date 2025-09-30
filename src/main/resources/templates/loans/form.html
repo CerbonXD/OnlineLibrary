@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Loan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+<header class="bg-indigo-600 text-white p-4">
+    <div class="container mx-auto flex justify-between">
+        <h1 class="text-xl font-semibold">New Loan</h1>
+        <nav class="space-x-4">
+            <a href="/loans" class="hover:underline">Back</a>
+        </nav>
+    </div>
+</header>
+<main class="container mx-auto p-6">
+    <div class="bg-white shadow rounded p-6 max-w-xl">
+        <form th:action="${action}" th:object="${loan}" method="post" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium">Book</label>
+                <select class="mt-1 block w-full border rounded p-2" th:field="*{book.id}">
+                    <option th:each="b : ${books}" th:value="${b.id}" th:text="${b.title}">Book</option>
+                </select>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('book.id')}" th:errors="*{book.id}"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">User</label>
+                <select class="mt-1 block w-full border rounded p-2" th:field="*{user.id}">
+                    <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.name}">User</option>
+                </select>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('user.id')}" th:errors="*{user.id}"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Withdrawal Date</label>
+                <input class="mt-1 block w-full border rounded p-2" type="date" th:field="*{withdrawalDate}"/>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('withdrawalDate')}" th:errors="*{withdrawalDate}"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Return Date</label>
+                <input class="mt-1 block w-full border rounded p-2" type="date" th:field="*{returnDate}"/>
+                <p class="text-red-600 text-sm" th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}"></p>
+            </div>
+            <div th:if="${#fields.hasErrors('*')}">
+                <p class="text-red-700 text-sm">Please correct the errors above. Ensure the withdrawal date is not after the return date.</p>
+            </div>
+            <div class="pt-2">
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded" type="submit">Create Loan</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
